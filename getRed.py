@@ -4,8 +4,8 @@ from pylab import *
 #from skimage import io
 import glob, os
 
-in_dir = 'clean_1'
-out_dir = in_dir + '_red'
+in_dir = './raw_red'
+out_dir = in_dir + '_black'
 if not os.path.exists(out_dir): os.mkdir(out_dir)
 
 thresh = 70
@@ -34,13 +34,13 @@ def main():
         x, y, _= shape(im)
         for i in range(x):
             for j in range(y):
-                # im.getpixel((i,j)))
+                im.getpixel((i,j)) 
                 if isred(im.getpixel((i,j))):
-                    im.putpixel((i,j),(255,33,33)) 
+                    im.putpixel((i,j),(0,0,0)) 
                 else:
                     im.putpixel((i,j),(255,255,255))
 
-        im.save(os.path.join(out_dir, filename))
+        im.save(os.path.join(out_dir, filename),quality = 100)
 
 if __name__ == '__main__':
     main()
